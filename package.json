@@ -1,0 +1,23 @@
+{
+  "name": "lunea",
+  "private": true,
+  "description": "LUNEA — платформа записи в салоны красоты",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "build": "npm run build --prefix frontend",
+    "start": "concurrently -n api,web \"npm run start --prefix backend\" \"npm run start --prefix frontend\"",
+    "db:up": "node database/postgres.js",
+    "db:migrate": "npm run prisma:migrate --prefix backend",
+    "db:seed": "npm run prisma:seed --prefix backend",
+    "db:setup": "npm run db:migrate && npm run db:seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prisma": "^6.19.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3"
+  }
+}
